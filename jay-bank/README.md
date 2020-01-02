@@ -1,11 +1,11 @@
-#BankApplication
+# BankApplication
 
-Provides the following banking transations
+## Provides the following banking transations
   1. Add Account
   2. Deposit
   3. Withdrawal
   
-Testing
+## Testing
   JUnit is used to test the main class files.
   
   
