@@ -40,7 +40,13 @@ public class PersonTest {
 
 		// Then
 		// TODO add assert
-
+		assertEquals("",person.getName());
+		assertEquals('m',person.getGender());
+		assertEquals("",person.getAge());
+		assertEquals(0.0,person.getHeight());
+		assertEquals(0.0,person.getWeight());
+		assertEquals("",person.getHairColor());
+		assertEquals("",person.getEyeColor());
 	}
 
 	@Test
@@ -60,7 +66,11 @@ public class PersonTest {
 
 		// Then
 		// TODO add assert
-
+		assertEquals("",person.getName());
+		assertEquals('m',person.getGender());
+		assertEquals("",person.getAge());
+		assertEquals(0.0,person.getHeight());
+		
 	}
 
 	@Test
@@ -70,6 +80,11 @@ public class PersonTest {
 
 		// Then
 		// TODO add assert
+		assertThat(name, equalTo(person.getName()));
+		assertThat(gender, equalTo(person.getGender()));
+		assertThat(age, equalTo(person.getAge()));
+		assertThat(height, equalTo(person.getHeight()));
+	
 	}
 
 	@Test
