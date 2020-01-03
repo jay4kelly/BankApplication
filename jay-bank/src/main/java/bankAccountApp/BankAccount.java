@@ -16,15 +16,15 @@ import java.util.Scanner;
 public class BankAccount {
 
 	private Person accountHolder;
-	private double balance;
+	private double balance = 0;
 	private String dateCreated;
-	private double withdrawLimit;
-	private double depositAmount;
+	private double withdrawLimit = 0;
+	private double depositAmount = 0;
 	private double withdrawAmount;
 	private boolean success;
-	private double initMoneyAmount;
+	private double initMoneyAmount = 0;
 	private int accountNumber = 0;
-	private double amountWithdrawn;
+	private double amountWithdrawn = 0;
 	private int nextAccountNumber = 0;
 
 	/**
@@ -33,12 +33,11 @@ public class BankAccount {
 	public BankAccount(double newInitMoneyAmount, double newWithdrawlimit, String newDateCreated, Person initHolder) {
 
 		initMoneyAmount = newInitMoneyAmount;
+		balance = newInitMoneyAmount;
 		withdrawLimit = newWithdrawlimit;
 		dateCreated = newDateCreated;
 		accountNumber = 0;
-		balance = 0;
 		accountHolder = initHolder;
-
 	}
 
 	public BankAccount(int accountNumber, double balance, double withdrawLimit, String dateCreated,
@@ -98,7 +97,6 @@ public class BankAccount {
 	 * @return the balance
 	 */
 	public double getBalance() {
-		// balance = acc.getBalance(acc);
 		return balance;
 	}
 
@@ -136,12 +134,6 @@ public class BankAccount {
 	 */
 	public void setWithdrawLimit(double withdrawLimit) {
 		this.withdrawLimit = withdrawLimit;
-	}
-
-	public void initilizeAccount(double initMoneyAmount) {
-
-		balance = initMoneyAmount;
-
 	}
 
 	public void depositMoney(double depositAmount) {
@@ -194,8 +186,9 @@ public class BankAccount {
 				String newHairColor = fileScanner.next();
 				String newEyeColor = fileScanner.next();
 				String newEmail = fileScanner.next();
-				String accountHolder1 = newName + Person.DELIM + gender + Person.DELIM + newAge + Person.DELIM + newHeight + Person.DELIM + newWeight
-						+ Person.DELIM + newHairColor + Person.DELIM + newEyeColor + Person.DELIM + newEmail;
+				String accountHolder1 = newName + Person.DELIM + gender + Person.DELIM + newAge + Person.DELIM
+						+ newHeight + Person.DELIM + newWeight + Person.DELIM + newHairColor + Person.DELIM
+						+ newEyeColor + Person.DELIM + newEmail;
 				Person accountHolderManager = new Person(accountHolder1);
 				tmpAccount.setAccountHolder(accountHolderManager);
 				accountsLoaded = accManager.addAccount(tmpAccount, 1);
@@ -231,8 +224,8 @@ public class BankAccount {
 
 	public String convertToText(BankAccount tmp) {
 
-		String AccountsInfo = Person.DELIM + tmp.getAccountNumber() + Person.DELIM + tmp.getBalance() + Person.DELIM + tmp.getWithdrawLimit()
-				+ Person.DELIM + tmp.getDateCreated() + Person.DELIM + tmp.getAccountHolder();
+		String AccountsInfo = Person.DELIM + tmp.getAccountNumber() + Person.DELIM + tmp.getBalance() + Person.DELIM
+				+ tmp.getWithdrawLimit() + Person.DELIM + tmp.getDateCreated() + Person.DELIM + tmp.getAccountHolder();
 		// allAccountInfo += AccountsInfo;
 
 		return AccountsInfo;

@@ -1,6 +1,9 @@
 package bankAccountApp;
 
 import static org.junit.Assert.*;
+
+import org.junit.Before;
+
 import bankAccountApp.BankAccount;
 import org.junit.Test;
 
@@ -18,110 +21,84 @@ public class BankAccountTest {
 	int initMoneyAmount = 5000;
 	int withdrawLimit = 760;
 	String dateCreated = "05/21/2019";
-	BankAccount bankAccountManager = new BankAccount();
+	BankAccount bankAccount = new BankAccount();
 	String text = "C:\\Users\\jay4k\\Desktop\\stuff\\Bankaccountinfo\\BankAccountinfotext.text";
-	//String text = "/Users/markkelly/BankAccountinfotext.text";
-	Bank accManager = new Bank();
+	// String text = "/Users/markkelly/BankAccountinfotext.text";
+	Bank bank = null;
+	Person accountHolder = null;
+
+	@Before
+	public void setup() {
+		// Create Person
+		try {
+			accountHolder = new Person(name, gender, age, weight, height, hairColor, eyeColor, email);
+		} catch (Exception e) {
+			System.out.print("Unexpected failure during test setup");
+			e.printStackTrace();
+		}
+		bank = new Bank();
+	}
 
 	@Test
-	public void testCreateAccount() throws Exception {
-		Person accountHolder = new Person(name, gender, age, weight, height, hairColor, eyeColor, email);
+	public void test_create_ver2_and_gets() throws Exception {
+		// Given
 		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
-		acc1.initilizeAccount(initMoneyAmount);
-		accManager.setAccountsLoaded(bankAccountManager.loadFromText(text));
+		bank.addAccount(acc1, ifloadaccManager);
 
-		if (accManager.getAccountsLoaded() > 0) {
-			ifloadaccManager = 2;
-		} else if (accManager.getAccountsLoaded() == 0) {
-			ifloadaccManager = 0;
-		}
-		accManager.addAccount(acc1, ifloadaccManager);
-
+		// Then
 		assertEquals(5000, acc1.getBalance(), 0f);
 	}
-	
+
 	@Test
 	public void testCreateAccount_DeleteAccount() throws Exception {
-		Person accountHolder = new Person(name, gender, age, weight, height, hairColor, eyeColor, email);
+		//Given
 		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
-		acc1.initilizeAccount(initMoneyAmount);
-		accManager.setAccountsLoaded(bankAccountManager.loadFromText(text));
-
-		if (accManager.getAccountsLoaded() > 0) {
-			ifloadaccManager = 2;
-		} else if (accManager.getAccountsLoaded() == 0) {
-			ifloadaccManager = 0;
-		}
-		accManager.addAccount(acc1, ifloadaccManager);
-		System.out.println("Your account number is " + acc1.getAccountNumber());
-		//assertEquals(5000, acc1.getBalance(), 0f);
-		//assertEquals("john", acc1.getAccountHolderName(acc1), 0f);
-
-		accManager.deleteAccount(acc1.getAccountNumber());
-		//assertEquals("john", acc1.getAccountHolderName(acc1), 0f);
-		assertEquals(5000, acc1.getBalance(), 0f);
-
+		bank.addAccount(acc1, ifloadaccManager);
+		int accountNumber = acc1.getAccountNumber();
+		bank.deleteAccount(acc1.getAccountNumber());
+		
+		//Then
+		assertNull("Account was not deleted:" + accountNumber, bank.findAccount(accountNumber));
 	}
+
 	@Test
 	public void testCreateAccount_GetAverageBalance() throws Exception {
-		Person accountHolder = new Person(name, gender, age, weight, height, hairColor, eyeColor, email);
-		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
-		acc1.initilizeAccount(initMoneyAmount);
-		accManager.setAccountsLoaded(bankAccountManager.loadFromText(text));
+		//Given
+		int acct1Amount = 5000;
+		int acct2Amount = 10000;
+		BankAccount acc1 = new BankAccount(acct1Amount, withdrawLimit, dateCreated, accountHolder);
+		BankAccount acc2 = new BankAccount(acct2Amount, withdrawLimit, dateCreated, accountHolder);
+		bank.addAccount(acc1, ifloadaccManager);
+		bank.addAccount(acc2, ifloadaccManager);
 
-		if (accManager.getAccountsLoaded() > 0) {
-			ifloadaccManager = 2;
-		} else if (accManager.getAccountsLoaded() == 0) {
-			ifloadaccManager = 0;
-		}
-		accManager.addAccount(acc1, ifloadaccManager);
-		System.out.println("Your account number is " + acc1.getAccountNumber());
-		assertEquals(1,acc1.getAccountNumber());
-		//assertEquals(5000, acc1.getBalance(), 0f);
-		//assertEquals("john", acc1.getAccountHolderName(acc1), 0f);
-		accManager.addAccount(acc1, ifloadaccManager);
-		System.out.println("Your account number is " + acc1.getAccountNumber());
-		
-		assertEquals(5000,accManager.getAverageBalance(),0f);
-
+		//Then
+		assertEquals(7500, bank.getAverageBalance(), 0f);
 	}
+
 	@Test
 	public void testCreateAccount_GetMaximumBalance() throws Exception {
-		Person accountHolder = new Person(name, gender, age, weight, height, hairColor, eyeColor, email);
-		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
-		acc1.initilizeAccount(initMoneyAmount);
-		accManager.setAccountsLoaded(bankAccountManager.loadFromText(text));
-
-		if (accManager.getAccountsLoaded() > 0) {
-			ifloadaccManager = 2;
-		} else if (accManager.getAccountsLoaded() == 0) {
-			ifloadaccManager = 0;
-		}
-		BankAccount acc2 = new BankAccount(1000, withdrawLimit, dateCreated, accountHolder);
-		accManager.addAccount(acc2, ifloadaccManager);
-		System.out.println("Your account number is " + acc1.getAccountNumber());
-		accManager.addAccount(acc1, ifloadaccManager);
-		System.out.println("Your account number is " + acc1.getAccountNumber());
-		assertEquals(5000,accManager.getMaximumBalance(),0f);
+		//Given
+		int acct1Amount = 5000;
+		int acct2Amount = 10000;		
+		BankAccount acc1 = new BankAccount(acct1Amount, withdrawLimit, dateCreated, accountHolder);
+		BankAccount acc2 = new BankAccount(acct2Amount, withdrawLimit, dateCreated, accountHolder);
+		bank.addAccount(acc2, ifloadaccManager);
+		bank.addAccount(acc1, ifloadaccManager);
+		
+		//Then
+		assertEquals(10000, bank.getMaximumBalance(), 0f);
 	}
+
 	@Test
 	public void testCreateAccount_GetMinimumBalance() throws Exception {
-		Person accountHolder = new Person(name, gender, age, weight, height, hairColor, eyeColor, email);
+		//Given
 		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
-		acc1.initilizeAccount(initMoneyAmount);
-		accManager.setAccountsLoaded(bankAccountManager.loadFromText(text));
-
-		if (accManager.getAccountsLoaded() > 0) {
-			ifloadaccManager = 2;
-		} else if (accManager.getAccountsLoaded() == 0) {
-			ifloadaccManager = 0;
-		}
 		BankAccount acc2 = new BankAccount(1000, withdrawLimit, dateCreated, accountHolder);
-		accManager.addAccount(acc2, ifloadaccManager);
-		System.out.println("Your account number is " + acc1.getAccountNumber());
-		accManager.addAccount(acc1, ifloadaccManager);
-		System.out.println("Your account number is " + acc1.getAccountNumber());
-		assertEquals(5000,accManager.getMinimumBalance(),0f);
+		bank.addAccount(acc2, ifloadaccManager);
+		bank.addAccount(acc1, ifloadaccManager);
+		
+		//Then
+		assertEquals(1000, bank.getMinimumBalance(), 0f);
 	}
-	
+
 }

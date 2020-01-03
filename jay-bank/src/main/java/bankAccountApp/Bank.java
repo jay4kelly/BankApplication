@@ -111,10 +111,6 @@ public class Bank {
 
 	public double getMaximumBalance() {
 		Double maximumBalance = 0.0;
-		BankAccount tmpAcc1 = Accounts.get(0);
-		if (Accounts.size() > 0) {
-			maximumBalance = tmpAcc1.getBalance();
-		}
 
 		for (int i = 0; i < Accounts.size(); i++) {
 			BankAccount tmpAcc = Accounts.get(i);
@@ -129,15 +125,13 @@ public class Bank {
 
 	public double getMinimumBalance() { // if account 0 dosen't exist minimum is always 0
 		Double minimumBalance = 0.0;
-		BankAccount tmpAcc1 = Accounts.get(1);
-		if (Accounts.size() > 0) {
-
-			minimumBalance = tmpAcc1.getBalance();
-		}
 
 		for (int i = 0; i < Accounts.size(); i++) {
-			BankAccount tmpAcc = Accounts.get(i);
 
+			BankAccount tmpAcc = Accounts.get(i);
+			if (i == 0) {
+				minimumBalance = tmpAcc.getBalance();
+			}
 			if (tmpAcc.getBalance() < minimumBalance) {
 				minimumBalance = tmpAcc.getBalance();
 			}

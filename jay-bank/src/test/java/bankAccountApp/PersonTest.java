@@ -177,6 +177,7 @@ public class PersonTest {
 		assertThat(8, equalTo(tokens.length));
 
 		// TODO assert remaining token entries
+		assertThat(name,equalTo(tokens[0]));
 	}
 
 }

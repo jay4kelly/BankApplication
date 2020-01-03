@@ -84,7 +84,6 @@ public class BankAccountApp {
 							e.printStackTrace();
 						}
 						BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
-						acc1.initilizeAccount(initMoneyAmount);
 
 						accManager.addAccount(acc1, ifloadaccManager);
 						// acc1.setAccountHolder(accountHolder);
