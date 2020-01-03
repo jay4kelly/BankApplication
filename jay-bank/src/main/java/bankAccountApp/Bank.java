@@ -127,7 +127,7 @@ public class Bank {
 		return maximumBalance;
 	}
 
-	public double getMinumumBalance() { // if account 0 dosent exist minimum is always 0
+	public double getMinimumBalance() { // if account 0 dosen't exist minimum is always 0
 		Double minimumBalance = 0.0;
 		BankAccount tmpAcc1 = Accounts.get(1);
 		if (Accounts.size() > 0) {

@@ -112,6 +112,14 @@ public class PersonTest {
 		// Then
 		// TODO add assert
 		assertEquals(name, person.getName());
+		assertEquals(gender, person.getGender());
+		assertEquals(age, person.getAge());
+		assertEquals(height, person.getHeight(), 0f);
+		assertEquals(weight, person.getWeight(), 0f);
+		assertEquals(hairColor, person.getHairColor());
+		assertEquals(eyeColor, person.getEyeColor());
+		assertEquals(emailAddress, person.getEmail());
+		assertEquals(name, person.getName());
 
 	}
 
@@ -122,6 +130,15 @@ public class PersonTest {
 
 		// Then
 		// TODO add assert
+		assertEquals(name, person.getName());
+		assertEquals(name, person.getName());
+		assertEquals(gender, person.getGender());
+		assertEquals(age, person.getAge());
+		assertEquals(height, person.getHeight(), 0f);
+		assertEquals(weight, person.getWeight(), 0f);
+		assertEquals(hairColor, person.getHairColor());
+		assertEquals(eyeColor, person.getEyeColor());
+		assertEquals(emailAddress, person.getEmail());
 	}
 
 	@Test

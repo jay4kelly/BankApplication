@@ -141,7 +141,7 @@ public class BankAccountApp {
 					System.out.println("The maximum of all accounts is " + accManager.getMaximumBalance());
 				}
 				if (options.equalsIgnoreCase("minimum")) {
-					System.out.println("The minimum of all accounts is " + accManager.getMinumumBalance());
+					System.out.println("The minimum of all accounts is " + accManager.getMinimumBalance());
 				}
 				if (options.equalsIgnoreCase("quit")) {
 					endProgram = true;
