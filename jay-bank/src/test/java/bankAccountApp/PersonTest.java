@@ -40,13 +40,13 @@ public class PersonTest {
 
 		// Then
 		// TODO add assert
-		assertEquals("",person.getName());
-		assertEquals('m',person.getGender());
-		assertEquals("",person.getAge());
-		assertEquals(0.0,person.getHeight());
-		assertEquals(0.0,person.getWeight());
-		assertEquals("",person.getHairColor());
-		assertEquals("",person.getEyeColor());
+		assertEquals("", person.getName());
+		assertEquals('m', person.getGender());
+		assertEquals("", person.getAge());
+		assertEquals(0.0, person.getHeight(), 0);
+		assertEquals(0.0, person.getWeight(), 0);
+		assertEquals("", person.getHairColor(), 0);
+		assertEquals("", person.getEyeColor(), 0);
 	}
 
 	@Test
@@ -66,11 +66,11 @@ public class PersonTest {
 
 		// Then
 		// TODO add assert
-		assertEquals("",person.getName());
-		assertEquals('m',person.getGender());
-		assertEquals("",person.getAge());
-		assertEquals(0.0,person.getHeight());
-		
+		assertEquals("", person.getName());
+		assertEquals('m', person.getGender());
+		assertEquals("", person.getAge());
+		assertEquals(0.0, person.getHeight(),0);
+
 	}
 
 	@Test
@@ -79,12 +79,10 @@ public class PersonTest {
 		Person person = new Person(name, gender, age, height);
 
 		// Then
-		// TODO add assert
 		assertThat(name, equalTo(person.getName()));
 		assertThat(gender, equalTo(person.getGender()));
 		assertThat(age, equalTo(person.getAge()));
 		assertThat(height, equalTo(person.getHeight()));
-	
 	}
 
 	@Test
@@ -125,7 +123,6 @@ public class PersonTest {
 		Person person = new Person(serializedPerson);
 
 		// Then
-		// TODO add assert
 		assertEquals(name, person.getName());
 		assertEquals(gender, person.getGender());
 		assertEquals(age, person.getAge());
@@ -192,7 +189,7 @@ public class PersonTest {
 		assertThat(8, equalTo(tokens.length));
 
 		// TODO assert remaining token entries
-		assertThat(name,equalTo(tokens[0]));
+		assertThat(name, equalTo(tokens[0]));
 	}
 
 }

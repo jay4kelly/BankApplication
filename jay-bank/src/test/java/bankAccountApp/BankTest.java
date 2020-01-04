@@ -1,6 +1,7 @@
 package bankAccountApp;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +26,8 @@ public class BankTest {
 	Bank bank = null;
 	Person accountHolder = null;
 
+	//TODO add test for remaining methods
+	
 	@Before
 	public void setup() {
 		// Create Person
@@ -35,6 +38,18 @@ public class BankTest {
 			e.printStackTrace();
 		}
 		bank = new Bank();
+	}
+
+	@Test
+	public void testCreateAccount_DeleteAccount() throws Exception {
+		//Given
+		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
+		bank.addAccount(acc1, ifloadaccManager);
+		int accountNumber = acc1.getAccountNumber();
+		bank.deleteAccount(acc1.getAccountNumber());
+		
+		//Then
+		assertNull("Account was not deleted:" + accountNumber, bank.findAccount(accountNumber));
 	}
 
 	@Test
@@ -76,4 +91,6 @@ public class BankTest {
 		//Then
 		assertEquals(1000, bank.getMinimumBalance(), 0f);
 	}
+
+	
 }

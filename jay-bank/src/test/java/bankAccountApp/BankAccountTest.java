@@ -27,13 +27,15 @@ public class BankAccountTest {
 	Bank bank = null;
 	Person accountHolder = null;
 
+	//TODO add tests for remaining methods
+	
 	@Before
 	public void setup() {
 		// Create Person
 		try {
 			accountHolder = new Person(name, gender, age, weight, height, hairColor, eyeColor, email);
 		} catch (Exception e) {
-			System.out.print("Unexpected failure during test setup");
+			System.out.print("Unexpected failure during test setup creating accountHolder");
 			e.printStackTrace();
 		}
 		bank = new Bank();
@@ -46,59 +48,8 @@ public class BankAccountTest {
 		bank.addAccount(acc1, ifloadaccManager);
 
 		// Then
+		//TODO add remaining asserts
 		assertEquals(5000, acc1.getBalance(), 0f);
-	}
-
-	@Test
-	public void testCreateAccount_DeleteAccount() throws Exception {
-		//Given
-		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
-		bank.addAccount(acc1, ifloadaccManager);
-		int accountNumber = acc1.getAccountNumber();
-		bank.deleteAccount(acc1.getAccountNumber());
-		
-		//Then
-		assertNull("Account was not deleted:" + accountNumber, bank.findAccount(accountNumber));
-	}
-
-	@Test
-	public void testCreateAccount_GetAverageBalance() throws Exception {
-		//Given
-		int acct1Amount = 5000;
-		int acct2Amount = 10000;
-		BankAccount acc1 = new BankAccount(acct1Amount, withdrawLimit, dateCreated, accountHolder);
-		BankAccount acc2 = new BankAccount(acct2Amount, withdrawLimit, dateCreated, accountHolder);
-		bank.addAccount(acc1, ifloadaccManager);
-		bank.addAccount(acc2, ifloadaccManager);
-
-		//Then
-		assertEquals(7500, bank.getAverageBalance(), 0f);
-	}
-
-	@Test
-	public void testCreateAccount_GetMaximumBalance() throws Exception {
-		//Given
-		int acct1Amount = 5000;
-		int acct2Amount = 10000;		
-		BankAccount acc1 = new BankAccount(acct1Amount, withdrawLimit, dateCreated, accountHolder);
-		BankAccount acc2 = new BankAccount(acct2Amount, withdrawLimit, dateCreated, accountHolder);
-		bank.addAccount(acc2, ifloadaccManager);
-		bank.addAccount(acc1, ifloadaccManager);
-		
-		//Then
-		assertEquals(10000, bank.getMaximumBalance(), 0f);
-	}
-
-	@Test
-	public void testCreateAccount_GetMinimumBalance() throws Exception {
-		//Given
-		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
-		BankAccount acc2 = new BankAccount(1000, withdrawLimit, dateCreated, accountHolder);
-		bank.addAccount(acc2, ifloadaccManager);
-		bank.addAccount(acc1, ifloadaccManager);
-		
-		//Then
-		assertEquals(1000, bank.getMinimumBalance(), 0f);
 	}
 
 }
