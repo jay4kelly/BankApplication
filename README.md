@@ -23,3 +23,10 @@ This is an application to simulate banking activity.
   - BankTest - test Bank class
   - BankAccountTest - test BankAccount class
   - PersonTest - test Person class
+
+## Running the Project
+
+ 1. Install Ecplise
+ 2. Setup a Maven Project to load the BankApplication
+ 3. Invoke BankAccountApp Main to launch console interface
+ 4. Run test classes as JUnit tests using Ecplise Run as Junit interface.
