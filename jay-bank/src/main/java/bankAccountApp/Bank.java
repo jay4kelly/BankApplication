@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author jay
  */
-public class Bank {
+public class Bank implements ACHService{
 
 	private static ArrayList<BankAccount> Accounts;
 	private final int initialSize = 1000;
@@ -186,4 +186,19 @@ public class Bank {
 		}
 		return allAccountInfo;
 	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<BankAccount> getAccounts(){
+		return (ArrayList<BankAccount>)Accounts.clone();
+	}
+	
+	public boolean registerAccount(int fromAccountNumber, int fromRoutingNumber, int destinationBank, int toAccountNumber) {
+		return true;
+	};
+	
+	public boolean transferAmount(int fromAccountNumber,int fromRoutingNumber,int destinationBank, int toAccountNumber, float amount) {
+		return true;
+	};
+
+
 }
