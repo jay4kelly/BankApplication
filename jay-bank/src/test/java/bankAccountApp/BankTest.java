@@ -3,6 +3,10 @@ package bankAccountApp;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import java.util.ArrayList;
+
+import bankAccountApp.BankAccount;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -92,5 +96,16 @@ public class BankTest {
 		assertEquals(1000, bank.getMinimumBalance(), 0f);
 	}
 
+	@Test
+	public void testGetAccounts() throws Exception {
+		//Given
+		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
+		BankAccount acc2 = new BankAccount(1000, withdrawLimit, dateCreated, accountHolder);
+		bank.addAccount(acc2, ifloadaccManager);
+		bank.addAccount(acc1, ifloadaccManager);
+		
+		//Then
+		ArrayList<BankAccount> accounts = bank.getAccounts();
+	}
 	
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author jay
  */
-public class Bank implements ACHService{
+public class Bank {
 
 	private static ArrayList<BankAccount> Accounts;
 	private final int initialSize = 1000;
