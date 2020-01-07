@@ -29,6 +29,10 @@ public class BankAccountTest {
 
 	//TODO add tests for remaining methods
 	
+
+	//TODO add test for remaining methods
+	
+
 	@Before
 	public void setup() {
 		// Create Person
@@ -40,6 +44,37 @@ public class BankAccountTest {
 		}
 		bank = new Bank();
 	}
+@Test
+public void test_create_and_withdraw_money() throws Exception
+{int withdrawamount = 200;
+bank.addAccount(bankAccount, ifloadaccManager);
+assertEquals(5000,bankAccount.getBalance(),0f);
+
+	bankAccount.withdrawMoney(withdrawamount);
+	assertEquals(4800,bankAccount.getBalance(),0f);
+}
+
+@Test
+public void test_create_and_deposit_money()
+{int depositamount = 200;
+bank.addAccount(bankAccount, ifloadaccManager);
+assertEquals(5000,bankAccount.getBalance(),0f);
+
+	bankAccount.depositMoney(depositamount);
+	assertEquals(5200,bankAccount.getBalance(),0f);
+}
+@Test
+public void test_create_and_setWithdrawLimit()
+{
+	int withdrawamount = 800;
+	bank.addAccount(bankAccount, ifloadaccManager);
+	assertEquals(700,bankAccount.getWithdrawLimit(),0f);
+	bankAccount.setWithdrawLimit(820);
+	assertEquals(5000,bankAccount.getBalance(),0f);
+
+		bankAccount.withdrawMoney(withdrawamount);
+		assertEquals(4200,bankAccount.getBalance(),0f);
+}
 
 	@Test
 	public void test_create_ver2_and_gets() throws Exception {
