@@ -89,7 +89,7 @@ public class BankAccount {
 	/**
 	 * @param balance the balance to set
 	 */
-	public void setBalance(double balance) {
+	private void setBalance(double balance) {
 
 		this.balance = balance;
 	}
@@ -104,7 +104,7 @@ public class BankAccount {
 	/**
 	 * @param dateCreated the dateCreated to set
 	 */
-	public void setDateCreated(String dateCreated) {
+	private void setDateCreated(String dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 

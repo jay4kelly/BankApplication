@@ -39,7 +39,6 @@ public class PersonTest {
 		Person person = new Person();
 
 		// Then
-		// TODO add assert
 		assertEquals("", person.getName());
 		assertEquals('m', person.getGender());
 		assertEquals("", person.getAge());
@@ -55,7 +54,7 @@ public class PersonTest {
 		Person person = new Person();
 
 		// Then
-		// TODO add assert
+		// TODO add assert for default values
 
 	}
 
@@ -65,7 +64,6 @@ public class PersonTest {
 		Person person = new Person(name, gender, age, height);
 
 		// Then
-		// TODO add assert
 		assertEquals("", person.getName());
 		assertEquals('m', person.getGender());
 		assertEquals("", person.getAge());
@@ -141,7 +139,7 @@ public class PersonTest {
 		Person person = new Person(serializedPerson);
 
 		// Then
-		// TODO add assert
+		//TODO change to assertThat
 		assertEquals(name, person.getName());
 		assertEquals(name, person.getName());
 		assertEquals(gender, person.getGender());
@@ -192,4 +190,7 @@ public class PersonTest {
 		assertThat(name, equalTo(tokens[0]));
 	}
 
+	
+	//TODO add a create person with a bad gender value. Catch expected exception.
+	//TODO also test the setGender exception
 }
