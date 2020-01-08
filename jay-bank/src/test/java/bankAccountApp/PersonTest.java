@@ -9,16 +9,16 @@ import org.junit.Test;
 
 public class PersonTest {
 
-	String name = null;
-	char gender = '\0';
-	int age = 0;
-	float height = 0f;
-	float weight = 0f;
-	String hairColor = null;
-	String eyeColor = null;
-	String emailAddress = null;
-	String serializedPerson;
-
+	static String name = "george";
+	static char gender = 'M';
+	static int age = 62;
+	static float height = 5.9f;
+	static float weight = 160f;
+	static String hairColor = "brown";
+	static String eyeColor = "hazel";
+	static String emailAddress = "bozo.net";
+	String serializedPerson = null;
+	
 	@Before
 	public void setup() {
 		name = "george";

@@ -19,13 +19,20 @@ public class BankAccount {
 	private double balance = 0;
 	private String dateCreated;
 	private double withdrawLimit = 0;
-	private double depositAmount = 0;
-	private double withdrawAmount;
 	private boolean success;
 	private double initMoneyAmount = 0;
 	private int accountNumber = 0;
 	private double amountWithdrawn = 0;
-	private int nextAccountNumber = 0;
+
+	public BankAccount() {
+		// Person Person = new Person();
+		initMoneyAmount = 0;
+		this.withdrawLimit = 0;
+		this.balance = 0;
+		this.dateCreated = "";
+		this.accountHolder = null;
+		this.accountNumber = 0;
+	}
 
 	/**
 	 * @return the accountHolder
@@ -48,27 +55,6 @@ public class BankAccount {
 		this.balance = balance;
 		this.dateCreated = dateCreated;
 		this.accountHolder = Person;
-		this.accountNumber = accountNumber;
-	}
-
-	public BankAccount() {
-		// Person Person = new Person();
-		initMoneyAmount = 0;
-		this.withdrawLimit = 0;
-		this.balance = 0;
-		this.dateCreated = "";
-		this.accountHolder = null;
-		this.accountNumber = 0;
-	}
-
-	public BankAccount(int accountNumber, double balance, double withdrawLimit, String dateCreated,
-			Person accountHolder1) {
-		// Person Person = new Person(accountHolder);
-		initMoneyAmount = 0;
-		this.withdrawLimit = withdrawLimit;
-		this.balance = balance;
-		this.dateCreated = dateCreated;
-		this.accountHolder = accountHolder1;
 		this.accountNumber = accountNumber;
 	}
 
@@ -136,6 +122,10 @@ public class BankAccount {
 		this.withdrawLimit = withdrawLimit;
 	}
 
+	public double getAmountWithdrawn() {
+		return amountWithdrawn;
+	}
+	
 	public void depositMoney(double depositAmount) {
 		if (depositAmount >= 0) {
 			balance = balance + depositAmount;
@@ -162,6 +152,10 @@ public class BankAccount {
 	public int getAccountNumber() {
 
 		return accountNumber;
+	}
+
+	public double getInitMoneyAmount() {
+		return initMoneyAmount;
 	}
 
 	public int loadFromText(String text) {

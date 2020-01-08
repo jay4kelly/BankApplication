@@ -17,7 +17,8 @@ public class BankAccountTest {
 	String eyeColor = "green";
 	String email = "jufm@gmail.com";
 
-	int ifloadaccManager = 0;
+	int assignAccountNumber = 0;
+	int accountNumberExists = 1;
 	int initMoneyAmount = 5000;
 	int withdrawLimit = 700;
 	String dateCreated = "05/21/2019";
@@ -26,6 +27,7 @@ public class BankAccountTest {
 	// String text = "/Users/markkelly/BankAccountinfotext.text";
 	Bank bank = null;
 	Person accountHolder = null;
+	String serializedPerson = null;
 
 	// TODO add tests for remaining methods
 
@@ -36,6 +38,8 @@ public class BankAccountTest {
 		// Create Person
 		try {
 			accountHolder = new Person(name, gender, age, weight, height, hairColor, eyeColor, email);
+			serializedPerson = name + Person.DELIM + gender + Person.DELIM + age + Person.DELIM + height + Person.DELIM
+					+ weight + Person.DELIM + hairColor + Person.DELIM + eyeColor + Person.DELIM + email;
 		} catch (Exception e) {
 			System.out.print("Unexpected failure during test setup creating accountHolder");
 			e.printStackTrace();
@@ -44,51 +48,65 @@ public class BankAccountTest {
 		bankAccount = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
 	}
 
+	@Test 
+	public void test_create_vert1_and_gets() throws Exception {
+		BankAccount acc1 = new BankAccount();
+		bank.addAccount(acc1, assignAccountNumber);
+
+		// Then
+		assertEquals("balance error",0, acc1.getBalance(), 0f);
+		assertEquals("withdrawal error",0, acc1.getWithdrawLimit(),0f);
+		assertEquals("amount withdrawn error",0,acc1.getAmountWithdrawn(),0f);
+		assertEquals("date created error","", acc1.getDateCreated());
+		assertEquals("account holder error",null, acc1.getAccountHolder());
+		assertEquals("account error",1,acc1.getAccountNumber());
+	}
+	
 	@Test
 	public void test_create_vert2_and_gets() throws Exception {
 		// Given
 		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
-		bank.addAccount(acc1, ifloadaccManager);
+		bank.addAccount(acc1, assignAccountNumber);
 
 		// Then
-		// TODO add remaining asserts
 		assertEquals(5000, acc1.getBalance(), 0f);
 		assertEquals(700, acc1.getWithdrawLimit(),0f);
-		assertEquals(0, acc1.getBalance(),0f);
 		assertEquals("05/21/2019", acc1.getDateCreated());
-		assertEquals(null, acc1.getAccountHolder());
-		assertEquals(0,acc1.getAccountNumber());
+		assertEquals(accountHolder, acc1.getAccountHolder());
+		assertSame(accountHolder,acc1.getAccountHolder());
+		assertEquals(1,acc1.getAccountNumber());
 	}
 		
-	}
-	
-	@Test 
-	public void test_create_vert1_and_gets() throws Exception {
-		BankAccount acc1 = new BankAccount();
-		bank.addAccount(acc1, ifloadaccManager);
 
-		// Then
-		// TODO add remaining asserts
-		assertEquals(0, acc1.getBalance(), 0f);
-		assertEquals(0, acc1.getWithdrawLimit(),0f);
-		assertEquals(0, acc1.getBalance(),0f);
-		assertEquals("", acc1.getDateCreated());
-		assertEquals(null, acc1.getAccountHolder());
-		assertEquals(0,acc1.getAccountNumber());
-	}
 	@Test
 	public void test_create_vert3_and_gets() throws Exception {
 		// Given
-		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
-		bank.addAccount(acc1, ifloadaccManager);
-		assertEquals(5000, acc1.getBalance(),0f);
-		
+		BankAccount acc1 = new BankAccount(1000,initMoneyAmount, withdrawLimit, dateCreated, serializedPerson);
+		bank.addAccount(acc1, accountNumberExists);
+
+		// Then
+		assertEquals(5000, acc1.getBalance(), 0f);
+		assertEquals(700, acc1.getWithdrawLimit(),0f);
+		assertEquals("05/21/2019", acc1.getDateCreated());
+		assertNotNull(acc1.getAccountHolder());	
+		Person person = acc1.getAccountHolder();
+		assertEquals(name, person.getName());
+		assertEquals(gender, person.getGender());
+		assertEquals(age, person.getAge());
+		assertEquals(height, person.getHeight(), 0);
+		assertEquals(weight, person.getWeight(), 0);
+		assertEquals(hairColor, person.getHairColor());
+		assertEquals(eyeColor, person.getEyeColor());	
+		assertEquals(email, person.getEmail());		
+		assertEquals(1000,acc1.getAccountNumber());
 	}
+	
+	
 	@Test
 	public void test_create_and_withdraw_money() throws Exception {
 		//Given
 		int withdrawamount = 200;
-		bank.addAccount(bankAccount, ifloadaccManager);
+		bank.addAccount(bankAccount, assignAccountNumber);
 		
 		//Then
 		assertEquals(5000, bankAccount.getBalance(), 0f);
@@ -100,7 +118,7 @@ public class BankAccountTest {
 	public void test_create_and_deposit_money() {
 		//Given
 		int depositamount = 200;
-		bank.addAccount(bankAccount, ifloadaccManager);
+		bank.addAccount(bankAccount, assignAccountNumber);
 		
 		//Then
 		assertEquals(5000, bankAccount.getBalance(), 0f);
@@ -112,7 +130,7 @@ public class BankAccountTest {
 	public void test_create_and_setWithdrawLimit() {
 		//Given
 		int withdrawamount = 800;
-		bank.addAccount(bankAccount, ifloadaccManager);
+		bank.addAccount(bankAccount, assignAccountNumber);
 		
 		//Then
 		assertEquals(700, bankAccount.getWithdrawLimit(), 0f);
@@ -121,7 +139,5 @@ public class BankAccountTest {
 		bankAccount.withdrawMoney(withdrawamount);
 		assertEquals(4200, bankAccount.getBalance(), 0f);
 	}
-h
-
 
 }
