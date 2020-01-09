@@ -86,9 +86,9 @@ public class BankAccountTest {
 		assertEquals("05/21/2019", acc1.getDateCreated());
 		assertNotNull(acc1.getAccountHolder());	
 		//TODO getAccountHolder(BankAccount)
-		//TODO getInitMoneyAmount
-		//TODO getWithdrawLimit
-		Person person = acc1.getAccountHolder();
+	assertEquals(0,acc1.getInitMoneyAmount(),0f);
+	assertEquals(700, acc1.getWithdrawLimit(),0f);
+	Person person = acc1.getAccountHolder();
 		assertEquals(name, person.getName());
 		assertEquals(gender, person.getGender());
 		assertEquals(age, person.getAge());
@@ -101,6 +101,10 @@ public class BankAccountTest {
 	}
 	
 	//TODO convertToText	
+	@Test
+	public void test_convert_to_text() {
+		
+	}
 
 	@Test
 	public void test_create_and_deposit_money() {
@@ -125,8 +129,9 @@ public class BankAccountTest {
 		//Then
 		assertEquals(5000, bankAccount.getBalance(), 0f);
 		bankAccount.withdrawMoney(withdrawamount);
+		assertEquals(200, bankAccount.getAmountWithdrawn(),0f);
 		assertEquals(4800, bankAccount.getBalance(), 0f);
-		//TODO getAmountWithdrawn
+		
 	}
 	
 	
@@ -138,8 +143,12 @@ public class BankAccountTest {
 		bank.addAccount(bankAccount, assignAccountNumber);
 		
 		//Then
+		bankAccount.withdrawMoney(withdrawamount);
+		assertEquals(5000, bankAccount.getBalance(), 0f);
+
 		assertEquals(700, bankAccount.getWithdrawLimit(), 0f);
 		bankAccount.setWithdrawLimit(820);
+		
 		assertEquals(5000, bankAccount.getBalance(), 0f);
 		bankAccount.withdrawMoney(withdrawamount);
 		assertEquals(4200, bankAccount.getBalance(), 0f);
@@ -158,10 +167,25 @@ public class BankAccountTest {
 		assertEquals(5000, bankAccount.getBalance(), 0f);
 		bankAccount.withdrawMoney(withdrawamount);
 		assertEquals(4200, bankAccount.getBalance(), 0f);
+		bankAccount.withdrawMoney(withdrawamount);
+		assertEquals(4200, bankAccount.getBalance(), 0f);
 		//TODO trigger a failure with withdrawal that includes amountwithdrawn (false) and check balance
 	}
 	
-	
+	@Test
+	public void test_toString() {
+		
+		//System.out.println(bankAccount.convertToText(bankAccount));
+		System.out.println(bankAccount.toString());
+		assertEquals("Your Account number is 0 Your Balance is: 5000.0 Date account created is: 05/21/2019 Withdraw limit is: 700.0 Your account holder info is: John\r\n" + 
+				"m\r\n" + 
+				"22\r\n" + 
+				"172.0\r\n" + 
+				"190.0\r\n" + 
+				"brown\r\n" + 
+				"green\r\n" + 
+				"jufm@gmail.com",bankAccount.toString());
+	}
 	//TODO toString
 	
 }

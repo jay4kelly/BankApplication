@@ -149,6 +149,14 @@ public class PersonTest {
 		assertEquals(hairColor, person.getHairColor());
 		assertEquals(eyeColor, person.getEyeColor());
 		assertEquals(emailAddress, person.getEmail());
+		assertThat(age, equalTo(person.getAge()));
+		// TODO add rest of asserts
+		assertThat(emailAddress, equalTo(person.getEmail()));
+		assertThat(name, equalTo(person.getName()));
+		assertThat(height, equalTo(person.getHeight()));
+		assertThat(eyeColor, equalTo(person.getEyeColor()));
+		assertThat(weight, equalTo(person.getWeight()));
+		assertThat(gender, equalTo(person.getGender()));
 	}
 
 	@Test
@@ -167,12 +175,23 @@ public class PersonTest {
 
 		// When
 		person.setAge(newAge);
+		person.setEmail(newEmailAddress);
+		person.setName(newName);
+		person.setHeight(newHeight);
+		person.setEyeColor(newEyeColor);
+		person.setWeight(newWeight);
+		person.setGender(newGender);
 		// TODO add other sets
 
 		// Then
 		assertThat(newAge, equalTo(person.getAge()));
 		// TODO add rest of asserts
-
+		assertThat(newEmailAddress, equalTo(person.getEmail()));
+		assertThat(newName, equalTo(person.getName()));
+		assertThat(newHeight, equalTo(person.getHeight()));
+		assertThat(newEyeColor, equalTo(person.getEyeColor()));
+		assertThat(newWeight, equalTo(person.getWeight()));
+		assertThat(newGender, equalTo(person.getGender()));
 	}
 
 	@Test
@@ -190,6 +209,10 @@ public class PersonTest {
 		assertThat(name, equalTo(tokens[0]));
 	}
 
+	@Test
+	public void test_person_validate_gender(){
+		
+	}
 	
 	//TODO add a create person with a bad gender value. Catch expected exception.
 	//TODO also test the setGender exception
