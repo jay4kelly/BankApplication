@@ -32,6 +32,15 @@ public class BankTest {
 
 	//TODO add test for remaining methods
 	
+	
+	//TODO add Bank constructor test. Check for no accounts
+	
+	//TODO test add account - check that account is added
+	
+	//TODO convertToText method
+	
+	//
+	
 	@Before
 	public void setup() {
 		// Create Person
@@ -56,6 +65,25 @@ public class BankTest {
 		assertNull("Account was not deleted:" + accountNumber, bank.findAccount(accountNumber));
 	}
 
+	//TODO findAccount method
+	
+	@Test
+	public void testGetAccounts() throws Exception {
+		//Given
+		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
+		BankAccount acc2 = new BankAccount(1000, withdrawLimit, dateCreated, accountHolder);
+		bank.addAccount(acc2, ifloadaccManager);
+		bank.addAccount(acc1, ifloadaccManager);
+		
+		//Then
+		ArrayList<BankAccount> accounts = bank.getAccounts();	
+		//TODO add assert for number accounts
+	}
+	
+	//TODO getAccountsLoaded 
+	
+	
+	
 	@Test
 	public void testCreateAccount_GetAverageBalance() throws Exception {
 		//Given
@@ -96,16 +124,5 @@ public class BankTest {
 		assertEquals(1000, bank.getMinimumBalance(), 0f);
 	}
 
-	@Test
-	public void testGetAccounts() throws Exception {
-		//Given
-		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
-		BankAccount acc2 = new BankAccount(1000, withdrawLimit, dateCreated, accountHolder);
-		bank.addAccount(acc2, ifloadaccManager);
-		bank.addAccount(acc1, ifloadaccManager);
-		
-		//Then
-		ArrayList<BankAccount> accounts = bank.getAccounts();
-	}
 	
 }

@@ -75,7 +75,7 @@ public class PersonTest {
 	public void test_create_ver2_and_gets_hamcrest() {
 		// Given
 		Person person = new Person(name, gender, age, height);
-
+		//TODO change assertThat to actual and expected
 		// Then
 		assertThat(name, equalTo(person.getName()));
 		assertThat(gender, equalTo(person.getGender()));
@@ -105,6 +105,7 @@ public class PersonTest {
 		Person person = new Person(name, gender, age, weight, height, hairColor, eyeColor, emailAddress);
 
 		// Then
+		//TODO change assertThat to actual and expected		
 		assertThat(name, equalTo(person.getName()));
 		assertThat(gender, equalTo(person.getGender()));
 		assertThat(age, equalTo(person.getAge()));
@@ -139,7 +140,6 @@ public class PersonTest {
 		Person person = new Person(serializedPerson);
 
 		// Then
-		//TODO change to assertThat
 		assertEquals(name, person.getName());
 		assertEquals(name, person.getName());
 		assertEquals(gender, person.getGender());
@@ -150,7 +150,7 @@ public class PersonTest {
 		assertEquals(eyeColor, person.getEyeColor());
 		assertEquals(emailAddress, person.getEmail());
 		assertThat(age, equalTo(person.getAge()));
-		// TODO add rest of asserts
+		// TODO change assertThat to actual and expected.  Finish assertThat and remove assertEquals
 		assertThat(emailAddress, equalTo(person.getEmail()));
 		assertThat(name, equalTo(person.getName()));
 		assertThat(height, equalTo(person.getHeight()));
@@ -181,11 +181,10 @@ public class PersonTest {
 		person.setEyeColor(newEyeColor);
 		person.setWeight(newWeight);
 		person.setGender(newGender);
-		// TODO add other sets
 
 		// Then
 		assertThat(newAge, equalTo(person.getAge()));
-		// TODO add rest of asserts
+		// TODO change assertThat to actual, expected
 		assertThat(newEmailAddress, equalTo(person.getEmail()));
 		assertThat(newName, equalTo(person.getName()));
 		assertThat(newHeight, equalTo(person.getHeight()));
@@ -202,6 +201,7 @@ public class PersonTest {
 
 		// Then
 		String[] tokens = serializedPerson.split(Person.DELIM);
+		// TODO change assertThat to actual, expected
 
 		assertThat(8, equalTo(tokens.length));
 

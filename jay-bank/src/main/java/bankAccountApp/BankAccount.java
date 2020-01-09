@@ -75,10 +75,6 @@ public class BankAccount {
 		// accountHolder = Person.getName() ;
 	}
 
-	public String getAccountHolderName(BankAccount acc) {
-		return Person.class.getName();
-	}
-
 	/**
 	 * @return the balance
 	 */
@@ -209,7 +205,7 @@ public class BankAccount {
 
 	public String toString() {
 
-		String bankInfo = "Yourh Account number is " + accountNumber + " " + "Your Balance is: " + balance + " "
+		String bankInfo = "Your Account number is " + accountNumber + " " + "Your Balance is: " + balance + " "
 				+ "Date account created is: " + dateCreated + " " + "Withdraw limit is: " + withdrawLimit + " "
 				+ "Your account holder info is: " + accountHolder;
 
@@ -218,7 +214,7 @@ public class BankAccount {
 
 	public String convertToText(BankAccount tmp) {
 
-		String AccountsInfo = Person.DELIM + tmp.getAccountNumber() + Person.DELIM + tmp.getBalance() + Person.DELIM
+		String AccountsInfo =  tmp.getAccountNumber() + Person.DELIM + tmp.getBalance() + Person.DELIM
 				+ tmp.getWithdrawLimit() + Person.DELIM + tmp.getDateCreated() + Person.DELIM + tmp.getAccountHolder();
 		// allAccountInfo += AccountsInfo;
 
