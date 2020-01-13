@@ -153,7 +153,9 @@ public class Person {
 	 * @throws Exception 
 	 */
 	public void setGender(char newGender) throws Exception {
-		validateGender(newGender);
+		if (validateGender(newGender)) {
+			this.gender = newGender;
+		}
 	}
 
 	/**
