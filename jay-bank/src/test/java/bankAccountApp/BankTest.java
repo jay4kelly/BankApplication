@@ -66,6 +66,11 @@ public class BankTest {
 	}
 
 	//TODO findAccount method
+	@Test
+	public void testFindAccount()
+	{
+		
+	}
 	
 	@Test
 	public void testGetAccounts() throws Exception {
@@ -81,7 +86,10 @@ public class BankTest {
 	}
 	
 	//TODO getAccountsLoaded 
-	
+	@Test
+	public void testgetAccountsLoaded() {
+		
+	}
 	
 	
 	@Test

@@ -140,7 +140,7 @@ public class PersonTest {
 		Person person = new Person(serializedPerson);
 
 		// Then
-		assertEquals(name, person.getName());
+	
 		assertEquals(name, person.getName());
 		assertEquals(gender, person.getGender());
 		assertEquals(age, person.getAge());
@@ -149,14 +149,15 @@ public class PersonTest {
 		assertEquals(hairColor, person.getHairColor());
 		assertEquals(eyeColor, person.getEyeColor());
 		assertEquals(emailAddress, person.getEmail());
-		assertThat(age, equalTo(person.getAge()));
+		assertThat( equalTo(person.getAge()),age);
 		// TODO change assertThat to actual and expected.  Finish assertThat and remove assertEquals
-		assertThat(emailAddress, equalTo(person.getEmail()));
-		assertThat(name, equalTo(person.getName()));
-		assertThat(height, equalTo(person.getHeight()));
-		assertThat(eyeColor, equalTo(person.getEyeColor()));
-		assertThat(weight, equalTo(person.getWeight()));
-		assertThat(gender, equalTo(person.getGender()));
+		assertThat( equalTo(person.getEmail()),emailAddress);
+		assertThat(equalTo(person.getName()),name );
+		assertThat( equalTo(person.getHeight()),height);
+		assertThat(equalTo(person.getEyeColor()),eyeColor );
+		assertThat(equalTo(person.getWeight()),weight);
+		assertThat(equalTo(person.getGender()),gender);
+		assertThat(equalTo(person.getHairColor()),hairColor);
 	}
 
 	@Test
@@ -183,14 +184,14 @@ public class PersonTest {
 		person.setGender(newGender);
 
 		// Then
-		assertThat(newAge, equalTo(person.getAge()));
+		assertThat(equalTo(person.getAge()),newAge);
 		// TODO change assertThat to actual, expected
-		assertThat(newEmailAddress, equalTo(person.getEmail()));
-		assertThat(newName, equalTo(person.getName()));
-		assertThat(newHeight, equalTo(person.getHeight()));
-		assertThat(newEyeColor, equalTo(person.getEyeColor()));
-		assertThat(newWeight, equalTo(person.getWeight()));
-		assertThat(newGender, equalTo(person.getGender()));
+		assertThat(equalTo(person.getEmail()),newEmailAddress );
+		assertThat(equalTo(person.getName()),newName);
+		assertThat( equalTo(person.getHeight()),newHeight);
+		assertThat(equalTo(person.getEyeColor()),newEyeColor );
+		assertThat(equalTo(person.getWeight()),newWeight);
+		assertThat( equalTo(person.getGender()),newGender);
 	}
 
 	@Test
@@ -210,8 +211,12 @@ public class PersonTest {
 	}
 
 	@Test
-	public void test_person_validate_gender(){
-		
+	public void test_person_validate_gender() throws Exception{
+		char newGender = 'l';
+		Person person = new Person(name, gender, age, weight, height, hairColor, eyeColor, emailAddress);
+person.setGender(newGender);
+//person.validateGender('l');
+assertThat('l',person.getGender());
 	}
 	
 	//TODO add a create person with a bad gender value. Catch expected exception.
