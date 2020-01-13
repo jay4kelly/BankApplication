@@ -79,9 +79,9 @@ public class PersonTest {
 		// Then
 		// TODO - see assertThat example below for person.getName that works.
 		assertThat(person.getName(), equalTo(name));
-		assertThat(gender, equalTo(person.getGender()));
-		assertThat(age, equalTo(person.getAge()));
-		assertThat(height, equalTo(person.getHeight()));
+		assertThat(person.getGender(),equalTo(gender));
+		assertThat(person.getAge(),equalTo(age) );
+		assertThat(person.getHeight(),equalTo(height));
 	}
 
 	@Test
@@ -150,16 +150,16 @@ public class PersonTest {
 		assertEquals(hairColor, person.getHairColor());
 		assertEquals(eyeColor, person.getEyeColor());
 		assertEquals(emailAddress, person.getEmail());
-		assertThat(equalTo(person.getAge()), age);
+		assertThat(person.getHeight(),equalTo(height));
+		assertThat(person.getAge(), equalTo(age));
 		// TODO change assertThat to actual and expected. Finish assertThat and remove
 		// assertEquals
-		assertThat(equalTo(person.getEmail()), emailAddress);
-		assertThat(equalTo(person.getName()), name);
-		assertThat(equalTo(person.getHeight()), height);
-		assertThat(equalTo(person.getEyeColor()), eyeColor);
-		assertThat(equalTo(person.getWeight()), weight);
-		assertThat(equalTo(person.getGender()), gender);
-		assertThat(equalTo(person.getHairColor()), hairColor);
+		assertThat(person.getEmail(), equalTo(emailAddress));
+		assertThat(person.getName(), equalTo(name));
+		assertThat(person.getEyeColor(), equalTo(eyeColor));
+		assertThat(person.getWeight(), equalTo(weight));
+		assertThat(person.getGender(), equalTo(gender));
+		assertThat(person.getHairColor(), equalTo(hairColor));
 	}
 
 	@Test
@@ -186,14 +186,14 @@ public class PersonTest {
 		person.setGender(newGender);
 
 		// Then
-		assertThat(equalTo(person.getAge()), newAge);
+		assertThat(person.getAge(),equalTo(newAge));
+		assertThat(person.getHeight(),equalTo(newHeight));
 		// TODO change assertThat to actual, expected
-		assertThat(equalTo(person.getEmail()), newEmailAddress);
-		assertThat(equalTo(person.getName()), newName);
-		assertThat(equalTo(person.getHeight()), newHeight);
-		assertThat(equalTo(person.getEyeColor()), newEyeColor);
-		assertThat(equalTo(person.getWeight()), newWeight);
-		assertThat(equalTo(person.getGender()), newGender);
+		assertThat(person.getEmail(), equalTo(newEmailAddress));
+		assertThat(person.getName(), equalTo(newName));
+		assertThat(person.getEyeColor(), equalTo(newEyeColor));
+		assertThat(person.getWeight(), equalTo(newWeight));
+		assertThat(person.getGender(), equalTo(newGender));
 	}
 
 	@Test
