@@ -2,6 +2,9 @@ package bankAccountApp;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
 
 import java.util.ArrayList;
 
@@ -65,10 +68,19 @@ public class BankTest {
 		assertNull("Account was not deleted:" + accountNumber, bank.findAccount(accountNumber));
 	}
 
-	//TODO findAccount method
+
 	@Test
 	public void testFindAccount()
 	{
+		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
+		BankAccount acc2 = new BankAccount(initMoneyAmount, 400, dateCreated, accountHolder);
+
+		bank.addAccount(acc1, ifloadaccManager);
+		bank.addAccount(acc1, 0);
+		bank.addAccount(acc1, 0);
+		bank.addAccount(acc2, 0);
+BankAccount tmpacc = bank.findAccount(4);
+assertThat(tmpacc.getWithdrawLimit(),equalTo(400.0));
 		
 	}
 	
@@ -83,12 +95,20 @@ public class BankTest {
 		//Then
 		ArrayList<BankAccount> accounts = bank.getAccounts();	
 		//TODO add assert for number accounts
+		assertThat(accounts.size(),equalTo(2));
 	}
 	
 	//TODO getAccountsLoaded 
 	@Test
-	public void testgetAccountsLoaded() {
-		
+	public void testgetAccountstLoaded() {
+		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
+		BankAccount acc2 = new BankAccount(initMoneyAmount, 400, dateCreated, accountHolder);
+
+		bank.addAccount(acc1, 1);
+		bank.addAccount(acc1, 1);
+		bank.addAccount(acc1, 1);
+		bank.addAccount(acc2, 1);
+	assertThat(bank.getAccountsLoaded(),equalTo(4));
 	}
 	
 	

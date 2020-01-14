@@ -112,18 +112,18 @@ public class BankAccountTest {
 		String[] tokens = serializedAccount.split(Person.DELIM);
 		// TODO change assertThat to have actual then expected
 		assertThat(tokens.length, equalTo(12)); // This is correct
-		assertThat(acc1.getAccountNumber(), equalTo(Integer.valueOf(tokens[0])));
-		assertThat(acc1.getBalance(), equalTo(Double.valueOf(tokens[1])));
-		assertThat(acc1.getWithdrawLimit(), equalTo(Double.valueOf(tokens[2])));
-		assertThat(acc1.getDateCreated(), equalTo(tokens[3]));
-		assertThat(accountHolder.getName(), equalTo(tokens[4]));
-		assertThat("gender error", accountHolder.getGender(), equalTo((tokens[5].charAt(0))));
-		assertThat("age error", accountHolder.getAge(), equalTo(Integer.valueOf(tokens[6])));
-		assertThat("height error", accountHolder.getHeight(), equalTo(Float.valueOf(tokens[7])));
-		assertThat("weight error", accountHolder.getWeight(), equalTo(Float.valueOf(tokens[8])));
-		assertThat("hair color error", accountHolder.getHairColor(), equalTo(tokens[9]));
-		assertThat("eye color error", accountHolder.getEyeColor(), equalTo(tokens[10]));
-		assertThat("email error", accountHolder.getEmail(), equalTo(tokens[11]));
+		assertThat(Integer.valueOf(tokens[0]), equalTo(acc1.getAccountNumber()));
+		assertThat(Double.valueOf(tokens[1]), equalTo(acc1.getBalance()));
+		assertThat(Double.valueOf(tokens[2]), equalTo(acc1.getWithdrawLimit()));
+		assertThat(tokens[3], equalTo(acc1.getDateCreated()));
+		assertThat(tokens[4], equalTo(accountHolder.getName()));
+		assertThat("gender error", tokens[5].charAt(0), equalTo((accountHolder.getGender())));
+		assertThat("age error", Integer.valueOf(tokens[6]), equalTo(accountHolder.getAge()));
+		assertThat("height error", Float.valueOf(tokens[7]), equalTo(accountHolder.getHeight()));
+		assertThat("weight error", Float.valueOf(tokens[8]), equalTo(accountHolder.getWeight()));
+		assertThat("hair color error", tokens[9], equalTo(accountHolder.getHairColor()));
+		assertThat("eye color error", tokens[10], equalTo(accountHolder.getEyeColor()));
+		assertThat("email error", tokens[11], equalTo(accountHolder.getEmail()));
 	}
 
 	@Test
