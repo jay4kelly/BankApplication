@@ -213,8 +213,12 @@ public class PersonTest {
 		// TODO assert remaining token entries, 7 entries to add
 		assertThat(tokens[0] , equalTo(name));
 		assertThat(tokens[1].charAt(0) , equalTo(gender));
-		assertThat(tokens[2] , equalTo(age));
-		assertThat(tokens[3] , equalTo(weight));
+		assertThat(Integer.valueOf(tokens[2]) , equalTo(age));
+		assertThat(Float.valueOf(tokens[3]) , equalTo(weight));
+		assertThat(Float.valueOf(tokens[4]) , equalTo(height));
+		assertThat(tokens[5],equalTo(hairColor));
+		assertThat(tokens[6],equalTo(eyeColor));
+		assertThat(tokens[7],equalTo(emailAddress));
 		
 	}
 
@@ -225,6 +229,10 @@ public class PersonTest {
 		person.setGender(newGender);
 	}
 @Test(expected = Exception.class)
-	public void
+	public void test_person_validate_gender_by_construtor() throws Exception {
+	char newGender = 'l';
+	Person person = new Person(name, newGender, age, weight, height, hairColor, eyeColor, emailAddress);
+	assertThat(person.getGender(),equalTo('l'));
+}
 	// TODO add a new test to create person with a bad gender value. Catch expected exception.
 }
