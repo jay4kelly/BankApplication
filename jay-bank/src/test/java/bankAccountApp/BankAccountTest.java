@@ -10,7 +10,6 @@ import org.junit.Before;
 import bankAccountApp.BankAccount;
 import org.junit.Test;
 
-
 public class BankAccountTest {
 	String name = "John";
 	char gender = 'm';
@@ -104,27 +103,27 @@ public class BankAccountTest {
 
 	@Test
 	public void test_convert_to_text() {
-		//Given
+		// Given
 		BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
 		bank.addAccount(acc1, assignAccountNumber);
 		String serializedAccount = acc1.convertToText(acc1);
 
 		// Then
 		String[] tokens = serializedAccount.split(Person.DELIM);
-		//TODO change assertThat to have actual then expected 
-		assertThat(12, equalTo(tokens.length));
-		assertThat(acc1.getAccountNumber(),equalTo(Integer.valueOf(tokens[0])));
-		assertThat(acc1.getBalance(),equalTo(Double.valueOf(tokens[1])));
-		assertThat(acc1.getWithdrawLimit(),equalTo(Double.valueOf(tokens[2])));
-		assertThat(acc1.getDateCreated(),equalTo(tokens[3]));
-		assertThat(accountHolder.getName(),equalTo(tokens[4]));
-		assertThat("gender",accountHolder.getGender(),equalTo((tokens[5].charAt(0))));
-		assertThat("age",accountHolder.getAge(),equalTo(Integer.valueOf(tokens[6])));
-		assertThat("height",accountHolder.getHeight(),equalTo(Float.valueOf(tokens[7])));
-		assertThat("weight",accountHolder.getWeight(),equalTo(Float.valueOf(tokens[8])));
-		assertThat("hair color",accountHolder.getHairColor(),equalTo(tokens[9]));
-		assertThat("eye color",accountHolder.getEyeColor(),equalTo(tokens[10]));
-		assertThat("email",accountHolder.getEmail(), equalTo(tokens[11]));
+		// TODO change assertThat to have actual then expected
+		assertThat(tokens.length, equalTo(12)); // This is correct
+		assertThat(acc1.getAccountNumber(), equalTo(Integer.valueOf(tokens[0])));
+		assertThat(acc1.getBalance(), equalTo(Double.valueOf(tokens[1])));
+		assertThat(acc1.getWithdrawLimit(), equalTo(Double.valueOf(tokens[2])));
+		assertThat(acc1.getDateCreated(), equalTo(tokens[3]));
+		assertThat(accountHolder.getName(), equalTo(tokens[4]));
+		assertThat("gender error", accountHolder.getGender(), equalTo((tokens[5].charAt(0))));
+		assertThat("age error", accountHolder.getAge(), equalTo(Integer.valueOf(tokens[6])));
+		assertThat("height error", accountHolder.getHeight(), equalTo(Float.valueOf(tokens[7])));
+		assertThat("weight error", accountHolder.getWeight(), equalTo(Float.valueOf(tokens[8])));
+		assertThat("hair color error", accountHolder.getHairColor(), equalTo(tokens[9]));
+		assertThat("eye color error", accountHolder.getEyeColor(), equalTo(tokens[10]));
+		assertThat("email error", accountHolder.getEmail(), equalTo(tokens[11]));
 	}
 
 	@Test
@@ -167,8 +166,8 @@ public class BankAccountTest {
 		bankAccount.setWithdrawLimit(820);
 
 		assertEquals(5000, bankAccount.getBalance(), 0f);
-		//Exceed balance and check for failure (return = false)
-		assertEquals(false,bankAccount.withdrawMoney(10000.00));
+		// Exceed balance and check for failure (return = false)
+		assertEquals(false, bankAccount.withdrawMoney(10000.00));
 		assertEquals(5000, bankAccount.getBalance(), 0f);
 	}
 
@@ -184,8 +183,8 @@ public class BankAccountTest {
 		assertEquals(5000, bankAccount.getBalance(), 0f);
 		bankAccount.withdrawMoney(withdrawamount);
 		assertEquals(4200, bankAccount.getBalance(), 0f);
-		//Next withdrawal exceeds daily withdrawal limit
-		assertEquals(false,bankAccount.withdrawMoney(withdrawamount));
+		// Next withdrawal exceeds daily withdrawal limit
+		assertEquals(false, bankAccount.withdrawMoney(withdrawamount));
 		assertEquals(4200, bankAccount.getBalance(), 0f);
 	}
 
@@ -193,16 +192,15 @@ public class BankAccountTest {
 	public void test_toString() {
 
 		String actualBankAccountValue = bankAccount.toString();
-		assertThat("account string part 1 incorrect", actualBankAccountValue,containsString("Your Account number is 0 Your Balance is: 5000.0"));
-		assertThat("account string part 2 incorrect", actualBankAccountValue,containsString("Date account created is: 05/21/2019 Withdraw limit is: 700.0 Your account holder info is: John"));
-		assertThat("account string part 3 incorrect", actualBankAccountValue,containsString("190.0"));
-		assertThat("account string part 4 incorrect", actualBankAccountValue,containsString("172.0"));
-		assertThat("account string part 5 incorrect", actualBankAccountValue,containsString("brown"));
-		assertThat("account string part 6 incorrect", actualBankAccountValue,containsString("green"));
-		assertThat("account string part 7 incorrect", actualBankAccountValue,containsString("jufm@gmail.com"));
-
-//		Expected Result		"Your Account number is 0 Your Balance is: 5000.0 Date account created is: 05/21/2019 Withdraw limit is: 700.0 Your account holder info is: John\r\n"
-//						+ "m\r\n" + "22\r\n" + "172.0\r\n" + "190.0\r\n" + "brown\r\n" + "green\r\n" + "jufm@gmail.com",
+		assertThat("account string part 1 incorrect", actualBankAccountValue,
+				containsString("Your Account number is 0 Your Balance is: 5000.0"));
+		assertThat("account string part 2 incorrect", actualBankAccountValue, containsString(
+				"Date account created is: 05/21/2019 Withdraw limit is: 700.0 Your account holder info is: John"));
+		assertThat("account string part 3 incorrect", actualBankAccountValue, containsString("190.0"));
+		assertThat("account string part 4 incorrect", actualBankAccountValue, containsString("172.0"));
+		assertThat("account string part 5 incorrect", actualBankAccountValue, containsString("brown"));
+		assertThat("account string part 6 incorrect", actualBankAccountValue, containsString("green"));
+		assertThat("account string part 7 incorrect", actualBankAccountValue, containsString("jufm@gmail.com"));
 	}
 
 }

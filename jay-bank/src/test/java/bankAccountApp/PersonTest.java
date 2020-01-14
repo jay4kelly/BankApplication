@@ -40,12 +40,12 @@ public class PersonTest {
 
 		// Then
 		assertEquals("", person.getName());
-		assertEquals('m', person.getGender());
-		assertEquals("", person.getAge());
+		assertEquals('M', person.getGender());
+		assertEquals(0, person.getAge());
 		assertEquals(0.0, person.getHeight(), 0);
 		assertEquals(0.0, person.getWeight(), 0);
-		assertEquals("", person.getHairColor(), 0);
-		assertEquals("", person.getEyeColor(), 0);
+		assertEquals("", person.getHairColor());
+		assertEquals("", person.getEyeColor());
 	}
 
 	@Test
@@ -54,8 +54,15 @@ public class PersonTest {
 		Person person = new Person();
 
 		// Then
-		// TODO add assert for default values
-
+		//TODO change to assert that with proper parameter order
+		assertThat(person.getName(),equalTo(""));
+		assertEquals("", person.getName());
+		assertEquals('M', person.getGender());
+		assertEquals(0, person.getAge());
+		assertEquals(0.0, person.getHeight(), 0);
+		assertEquals(0.0, person.getWeight(), 0);
+		assertEquals("", person.getHairColor());
+		assertEquals("", person.getEyeColor());
 	}
 
 	@Test
@@ -64,10 +71,10 @@ public class PersonTest {
 		Person person = new Person(name, gender, age, height);
 
 		// Then
-		assertEquals("", person.getName());
-		assertEquals('m', person.getGender());
-		assertEquals("", person.getAge());
-		assertEquals(0.0, person.getHeight(), 0);
+		assertEquals(name, person.getName());
+		assertEquals(gender, person.getGender());
+		assertEquals(age, person.getAge());
+		assertEquals(height, person.getHeight(), 0);
 
 	}
 
@@ -75,9 +82,6 @@ public class PersonTest {
 	public void test_create_ver2_and_gets_hamcrest() {
 		// Given
 		Person person = new Person(name, gender, age, height);
-		// TODO change assertThat to actual and expected
-		// Then
-		// TODO - see assertThat example below for person.getName that works.
 		assertThat(person.getName(), equalTo(name));
 		assertThat(person.getGender(),equalTo(gender));
 		assertThat(person.getAge(),equalTo(age) );
@@ -106,7 +110,6 @@ public class PersonTest {
 		Person person = new Person(name, gender, age, weight, height, hairColor, eyeColor, emailAddress);
 
 		// Then
-		// TODO change assertThat to actual and expected
 		assertThat(name, equalTo(person.getName()));
 		assertThat(gender, equalTo(person.getGender()));
 		assertThat(age, equalTo(person.getAge()));
@@ -141,7 +144,6 @@ public class PersonTest {
 		Person person = new Person(serializedPerson);
 
 		// Then
-
 		assertEquals(name, person.getName());
 		assertEquals(gender, person.getGender());
 		assertEquals(age, person.getAge());
@@ -151,9 +153,8 @@ public class PersonTest {
 		assertEquals(eyeColor, person.getEyeColor());
 		assertEquals(emailAddress, person.getEmail());
 		assertThat(person.getHeight(),equalTo(height));
+		assertThat(person.getHeight(),equalTo(height));
 		assertThat(person.getAge(), equalTo(age));
-		// TODO change assertThat to actual and expected. Finish assertThat and remove
-		// assertEquals
 		assertThat(person.getEmail(), equalTo(emailAddress));
 		assertThat(person.getName(), equalTo(name));
 		assertThat(person.getEyeColor(), equalTo(eyeColor));
@@ -172,6 +173,8 @@ public class PersonTest {
 		String newHairColor = "blonde";
 		String newEyeColor = "green";
 		String newEmailAddress = "gene@homeontherange.com";
+		
+		//TODO add test setHairColor
 
 		// Given
 		Person person = new Person(name, gender, age, weight, height, hairColor, eyeColor, emailAddress);
@@ -188,7 +191,6 @@ public class PersonTest {
 		// Then
 		assertThat(person.getAge(),equalTo(newAge));
 		assertThat(person.getHeight(),equalTo(newHeight));
-		// TODO change assertThat to actual, expected
 		assertThat(person.getEmail(), equalTo(newEmailAddress));
 		assertThat(person.getName(), equalTo(newName));
 		assertThat(person.getEyeColor(), equalTo(newEyeColor));
@@ -204,12 +206,11 @@ public class PersonTest {
 
 		// Then
 		String[] tokens = serializedPerson.split(Person.DELIM);
-		// TODO change assertThat to actual, expected
 
 		assertThat(8, equalTo(tokens.length));
 
-		// TODO assert remaining token entries
-		assertThat(name, equalTo(tokens[0]));
+		// TODO assert remaining token entries, 7 entries to add
+		assertThat(tokens[0], equalTo(name));
 	}
 
 	@Test(expected = Exception.class) 
@@ -219,6 +220,5 @@ public class PersonTest {
 		person.setGender(newGender);
 	}
 
-	// TODO add a create person with a bad gender value. Catch expected exception.
-	// TODO also test the setGender exception
+	// TODO add a new test to create person with a bad gender value. Catch expected exception.
 }
