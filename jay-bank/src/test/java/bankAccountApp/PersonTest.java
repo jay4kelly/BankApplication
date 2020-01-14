@@ -56,13 +56,13 @@ public class PersonTest {
 		// Then
 		//TODO change to assert that with proper parameter order
 		assertThat(person.getName(),equalTo(""));
-		assertEquals("", person.getName());
-		assertEquals('M', person.getGender());
-		assertEquals(0, person.getAge());
-		assertEquals(0.0, person.getHeight(), 0);
-		assertEquals(0.0, person.getWeight(), 0);
-		assertEquals("", person.getHairColor());
-		assertEquals("", person.getEyeColor());
+		assertThat(person.getAge(),equalTo(0));
+		assertThat(person.getGender(),equalTo('M'));
+		assertThat(person.getHeight(),equalTo(0.0f));
+		assertThat(person.getWeight(),equalTo(0.0f));
+		assertThat(person.getHairColor(),equalTo(""));
+		assertThat(person.getEyeColor(),equalTo(""));
+		
 	}
 
 	@Test
@@ -110,14 +110,15 @@ public class PersonTest {
 		Person person = new Person(name, gender, age, weight, height, hairColor, eyeColor, emailAddress);
 
 		// Then
-		assertThat(name, equalTo(person.getName()));
-		assertThat(gender, equalTo(person.getGender()));
-		assertThat(age, equalTo(person.getAge()));
-		assertThat(height, equalTo(person.getHeight()));
-		assertThat(weight, equalTo(person.getWeight()));
-		assertThat(hairColor, equalTo(person.getHairColor()));
-		assertThat(eyeColor, equalTo(person.getEyeColor()));
-		assertThat(emailAddress, equalTo(person.getEmail()));
+		assertThat(person.getName(),equalTo(name));
+		assertThat(person.getGender(),equalTo(gender));
+		assertThat(person.getHeight(),equalTo(height));
+		assertThat(person.getAge(),equalTo(0));
+		assertThat(person.getWeight(),equalTo(weight));
+		assertThat(person.getHairColor(),equalTo(hairColor));
+		assertThat(person.getEyeColor(),equalTo(eyeColor));
+		assertThat(person.getEmail(),equalTo(emailAddress));
+		
 	}
 
 	@Test
@@ -210,7 +211,11 @@ public class PersonTest {
 		assertThat(8, equalTo(tokens.length));
 
 		// TODO assert remaining token entries, 7 entries to add
-		assertThat(tokens[0], equalTo(name));
+		assertThat(tokens[0] , equalTo(name));
+		assertThat(tokens[1].charAt(0) , equalTo(gender));
+		assertThat(tokens[2] , equalTo(age));
+		assertThat(tokens[3] , equalTo(weight));
+		
 	}
 
 	@Test(expected = Exception.class) 
@@ -219,6 +224,7 @@ public class PersonTest {
 		Person person = new Person(name, gender, age, weight, height, hairColor, eyeColor, emailAddress);
 		person.setGender(newGender);
 	}
-
+@Test(expected = Exception.class)
+	public void
 	// TODO add a new test to create person with a bad gender value. Catch expected exception.
 }
