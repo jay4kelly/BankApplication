@@ -23,7 +23,7 @@ public class Bank {
 	private double averageBalance;
 	// private double minumumBalance;
 	private int accNumber = 1;
-	static int accountsLoaded = 0;
+	private int accountsLoaded = 0;
 	// Bank accManeger = new Bank();
 
 	public Bank() {
@@ -32,12 +32,11 @@ public class Bank {
 
 	}
 
-
 	public int addAccount(BankAccount acc, int isLoadAccount) {
 		if (isLoadAccount == 0) {
 			Accounts.add(acc);
-
 			acc.setAccountNumber(accNumber);
+			accountsLoaded++;
 			accNumber++;
 		}
 		if (isLoadAccount == 1) {
@@ -139,13 +138,11 @@ public class Bank {
 		return minimumBalance;
 	}
 
-
 	public void saveAccounts(Bank accManager) {
 		FileOutputStream fos = null;
 		OutputStreamWriter osw = null;
 		try {
-			fos = new FileOutputStream(
-					"C:\\Users\\jay4k\\Desktop\\stuff\\Bankaccountinfo\\BankAccountinfotext.text");
+			fos = new FileOutputStream("C:\\Users\\jay4k\\Desktop\\stuff\\Bankaccountinfo\\BankAccountinfotext.text");
 			osw = new OutputStreamWriter(fos);
 			for (int i = 0; i < Accounts.size(); i++) {
 				BankAccount tmp = Accounts.get(i);
@@ -155,50 +152,52 @@ public class Bank {
 			}
 		} catch (IOException e) {
 			System.out.println("Error writing to file");
-		}
-		finally {
+		} finally {
 			if (osw != null) {
 				try {
 					osw.close();
 				} catch (IOException e) {
-					//no action
+					// no action
 				}
 			}
 			if (fos != null) {
 				try {
 					fos.close();
 				} catch (IOException e) {
-					//no action
+					// no action
 				}
 			}
 		}
 
 	}
 
-
 	public String convertToText() {
 		String allAccountInfo = "";
 		for (int i = 0; i < Accounts.size(); i++) {
 			BankAccount acc = Accounts.get(i);
-			String AccountsInfo = acc.getAccountNumber() + Person.DELIM + acc.getBalance() + Person.DELIM + acc.getWithdrawLimit()
-					+ Person.DELIM + acc.getDateCreated() + Person.DELIM + acc.getAccountHolder();
+			String AccountsInfo = acc.getAccountNumber() + Person.DELIM + acc.getBalance() + Person.DELIM
+					+ acc.getWithdrawLimit() + Person.DELIM + acc.getDateCreated() + Person.DELIM
+					+ acc.getAccountHolder();
 			allAccountInfo += AccountsInfo;
 		}
 		return allAccountInfo;
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayList<BankAccount> getAccounts(){
-		return (ArrayList<BankAccount>)Accounts.clone();
+	public ArrayList<BankAccount> getAccounts() {
+		return (ArrayList<BankAccount>) Accounts.clone();
 	}
-	
-	public boolean registerAccount(int fromAccountNumber, int fromRoutingNumber, int destinationBank, int toAccountNumber) {
-		return true;
-	};
-	
-	public boolean transferAmount(int fromAccountNumber,int fromRoutingNumber,int destinationBank, int toAccountNumber, float amount) {
+
+	public boolean registerAccount(int fromAccountNumber, int fromRoutingNumber, int destinationBank,
+			int toAccountNumber) {
 		return true;
 	};
 
+	public boolean transferAmount(int fromAccountNumber, int fromRoutingNumber, int destinationBank,
+			int toAccountNumber, float amount) {
+		ACHServiceImpl service = new ACHServiceImpl();
+		service.transferAmount(fromAccountNumber, fromRoutingNumber, destinationBank, toAccountNumber, amount);
+		return true;
+	};
 
 }

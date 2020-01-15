@@ -5,7 +5,6 @@
  */
 package bankAccountApp;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -14,8 +13,6 @@ import java.util.Scanner;
  */
 public class BankAccountApp {
 
-	private boolean success;
-	private static ArrayList<BankAccount> Accounts;
 
 	/**
 	 * @param args the command line arguments
@@ -25,7 +22,6 @@ public class BankAccountApp {
 		// Person accountHolder = null;
 		// BankAccount acc1 = null;
 		String operation = "";
-		boolean newaccountCreated = false;
 		boolean endProgram = false;
 		String options = "";
 		int number = 0;
@@ -86,8 +82,6 @@ public class BankAccountApp {
 						BankAccount acc1 = new BankAccount(initMoneyAmount, withdrawLimit, dateCreated, accountHolder);
 
 						accManager.addAccount(acc1, ifloadaccManager);
-						// acc1.setAccountHolder(accountHolder);
-						newaccountCreated = true;
 						System.out.println("Your account number is " + acc1.getAccountNumber());
 						newAccountOperations = true;
 						while (newAccountOperations == true) {
@@ -97,10 +91,6 @@ public class BankAccountApp {
 
 							if (operation.equalsIgnoreCase("BALANCE")) {
 								System.out.println("Balance is: " + acc1.getBalance());
-//                            System.out.println("Enter Account Number");
-//                            number = scan.nextInt();
-//
-//                            System.out.println("Balance is: " + acc1.getBalance(accManager.findAccount(number)));
 							}
 
 							if (operation.equalsIgnoreCase("DEPOSIT")) {
@@ -128,15 +118,10 @@ public class BankAccountApp {
 				}
 
 				if (options.equalsIgnoreCase("AVERAGE")) {
-					Double averageBalance = accManager.getAverageBalance();
-					if (averageBalance != null) {
-						System.out.println("Average of accounts is " + averageBalance);
-					} else {
-						System.out.println("Error getting Average, returned NULL");
-					}
+					System.out.println("Average of accounts is " + accManager.getAverageBalance());
 				}
+				
 				if (options.equalsIgnoreCase("MAXIMUM")) {
-					// Accounts = Bank.getAccounts();
 					System.out.println("The maximum of all accounts is " + accManager.getMaximumBalance());
 				}
 				if (options.equalsIgnoreCase("minimum")) {
@@ -218,11 +203,18 @@ public class BankAccountApp {
 				}
 			}
 		}
-
+		
+		if (scan != null)
+			scan.close();
+		
 		try {
 			accManager.saveAccounts(accManager);
 		} catch (Exception e) {
 			System.out.println("Error writing to file");
+		}
+		finally {
+			if (scan != null)
+				scan.close();
 		}
 	}
 }

@@ -110,8 +110,7 @@ public class BankAccountTest {
 
 		// Then
 		String[] tokens = serializedAccount.split(Person.DELIM);
-		// TODO change assertThat to have actual then expected
-		assertThat(tokens.length, equalTo(12)); // This is correct
+		assertThat(tokens.length, equalTo(12)); 
 		assertThat(Integer.valueOf(tokens[0]), equalTo(acc1.getAccountNumber()));
 		assertThat(Double.valueOf(tokens[1]), equalTo(acc1.getBalance()));
 		assertThat(Double.valueOf(tokens[2]), equalTo(acc1.getWithdrawLimit()));

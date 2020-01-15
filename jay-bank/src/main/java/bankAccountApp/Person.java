@@ -21,14 +21,7 @@ public class Person {
 	private String hairColor;
 	private String eyeColor;
 	private String email;
-	private double balance;
-	private String dateCreated;
-	private double withdrawLimit;
-	private double depositAmount;
-	private double withdrawAmount;
-	private boolean success;
-	private double initMoneyAmount;
-	private double accountNumber;
+
 
 	public static final String DELIM = "\n";
 	
@@ -95,6 +88,7 @@ public class Person {
 	 * @param accountHolder
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("resource")
 	public Person(String accountHolder) throws Exception {
 		Scanner scan = null;
 		try {
