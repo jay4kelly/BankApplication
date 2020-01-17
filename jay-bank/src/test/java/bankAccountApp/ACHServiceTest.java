@@ -37,8 +37,20 @@ public class ACHServiceTest {
 
 	@Test
 	public void testTransferAmount() {
-		//TODO implement
-		fail("Not yet implemented");
+		// TODO implement
+		
+		//Given
+		ACHServiceImpl service = mock(ACHServiceImpl.class);
+		float amount = 300;
+		
+		// When
+		//TODO add when conditions for true and false
+		
+		// Then
+		boolean result = service.transferAmount(account, routingNumber, destinationBank, toAccount,
+				amount);
+		assertThat("failed to transfer amount",result, equalTo(true));
+		//TODO add false
 	}
 
 }
