@@ -37,7 +37,18 @@ public class ACHServiceTest {
 
 	@Test
 	public void testTransferAmount() {
-		fail("Not yet implemented");
+		ACHServiceImpl service = mock(ACHServiceImpl.class);
+int fromAccountNumber = 78;
+int fromRoutingNumber = 22;
+int toAccountNumber = 1;
+float amount = 300;
+		// When
+		// Successful register
+		service.registerAccount(account, routingNumber, destinationBank, toAccount);
+		// Unsuccessful register
+boolean result = service.transferAmount(fromAccountNumber,fromRoutingNumber,destinationBank,toAccountNumber,amount);
+		// Then
+assertThat(result,equalTo(true));
 	}
 
 }
