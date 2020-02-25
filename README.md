@@ -1,7 +1,7 @@
 # BankApplication
-This is an application to simulate banking activity. 
+This is a Java console application to simulate banking activity. The application is quite simple but it provides a way to show examples on how to use JUnit, Hamcrest and Mockito.
 
-  ** Application Java Classes **
+  **Application Java Classes**
   
   - Bank - institution owning accounts
   - BankAccount - account held by bank on behalf of a customer
@@ -23,6 +23,8 @@ This is an application to simulate banking activity.
   - BankTest - test Bank class
   - BankAccountTest - test BankAccount class
   - PersonTest - test Person class
+  - ACHServiceTest - simple use of Mochito
+  - AllTests - runs all test
 
 ## Running the Project
 
